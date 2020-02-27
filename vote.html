@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Голосование</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container text-center">
+    <h2>Проголосуйте за кошек, собак или попугаев.</h2>
+        <div class="buttons">
+            <button class="btn btn-primary" id="cats">Коты</button>
+            <button class="btn btn-primary" id="dogs">Собаки</button>
+            <button class="btn btn-primary" id="parrots">Попугаи</button>
+        </div>
+</div>
+<script>
+    document.querySelector(".buttons").onclick = function(event){
+        let animal = event.target.id;
+        let vote = 'https://sf-pyw.mosyag.in/sse/vote/' + animal;
+        fetch(vote, {method: "POST"})
+            .then(response => response.json())
+            .then(data => {console.log(data.message)})
+    };
+</script>
+</body>
+</html>
